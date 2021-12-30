@@ -1,0 +1,9 @@
+{
+  "name": "webapp",
+  "version": "0.0.1",
+  "description": "minimalist multiroom chat server",
+  "dependencies": {
+    "formidable": "^2.0.1",
+    "socket.io": "^0.9.19"
+  }
+}
