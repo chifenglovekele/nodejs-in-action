@@ -1,6 +1,14 @@
-<% if (local.messages) { %>
-  <% messages.forEach(function(message) { %>
-    <p class="<%= message.type %>"><%= message.string %></p>
-  <% }) %>
-  <% removeMessages() %>
+<% if (locals.user) { %>
+  <div id="menu">
+    <span class="name">
+      <%= user.name %>
+    </span>
+    <a href="/post">post</a>
+    <a href="/logout">logout</a>
+  </div>
+<% } else { %>
+  <div id="menu">
+    <a href="/login">login</a>
+    <a href="/register">register</a>
+  </div>
 <% } %>

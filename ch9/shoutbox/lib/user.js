@@ -55,6 +55,7 @@ User.prototype.hashPassword = function(fn) {
 
 // 通过名称获取用户
 User.getByName = function(name, fn) {
+  console.log('name----', name)
   User.getId(name, function(err, id) {
     if (err) return fn(err);
     User.get(id, fn);
@@ -68,8 +69,10 @@ User.getId = function(name, fn) {
 
 // 通过id获取普通user对象哈希
 User.get = function(id, fn) {
+  console.log('id----', id)
   db.hgetall('user:' + id, function(err, user) {
     if (err) return fn(err)
+    console.log('user----', user)
     fn(null, new User(user));
   })
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>socket.io synamically reloading css stylesheets</title>
+    <link rel="stylesheet" type="text/css" href="/header.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/style.css" /> -->
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+      window.onload = function() {
+        var socket = io.connect();
+        socket.on('reload', function() {
+          console.log('reload')
+          window.location.reload();
+        });
+        socket.on('stylesheet', function(sheet) {
+          var link = document.createElement('link');
+          var head = document.getElementsByTagName('head')[0];
+          link.setAttribute('rel', 'stylesheet');
+          link.setAttribute('type', 'text/css');
+          link.setAttribute('href', sheet);
+          head.appendChild(link);
+        })
+      }
+    </script>
+  </head>
+  <body>
+    <div id="body">
+      <h1>this is out awesome webpage!</h1>
+      <p>if this file is edited, then the server will send a message to the browser using socket.io telling it to refresh the page.</p>
+      <p>if either of the stylesheets are edited, then the server will send a message to the browser using socket.io telling it to dynamically reload the css, without refreshing the page.</p>
+      <p>修改一下12345</p>
+    </div>
+    <div id="event-log"></div>
+  </body>
+</html>

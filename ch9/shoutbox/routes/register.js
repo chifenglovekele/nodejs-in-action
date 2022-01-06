@@ -1,12 +1,11 @@
 var User = require('../lib/user');
 
 exports.form = function(req, res) {
-  console.log('form')
   res.render('register', {title: 'Register'});
 }
 
 exports.submit = function(req, res, next) {
-  console.log(req.body)
+  console.log('req.body----', req.body)
   var data = req.body;
   User.getByName(data.name, function(err, user) {
     if (err) return next(err)

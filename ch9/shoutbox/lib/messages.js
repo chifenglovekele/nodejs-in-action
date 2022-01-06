@@ -4,7 +4,7 @@ res.message = function(msg, type) {
   type = type || 'info';
   var sess = this.req.session;
   sess.messages = sess.messages || [];
-  sess.message.push({type: type, string: msg});
+  sess.messages.push({type: type, string: msg});
 }
 
 res.error = function(msg) {
@@ -12,7 +12,7 @@ res.error = function(msg) {
 }
 
 module.exports = function(req, res, next) {
-  res.locals.message = req.session.messages || [];
+  res.locals.messages = req.session.messages || [];
   res.locals.removeMessages = function() {
     req.session.messages = [];
   };
